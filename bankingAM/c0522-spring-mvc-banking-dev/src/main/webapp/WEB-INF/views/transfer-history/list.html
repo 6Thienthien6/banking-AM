@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap-5.2.0-dist/css/all.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap-5.2.0-dist/sweetalert2/dist/sweetalert2.min.css">
+    <style>
+    header {
+    background-color: rgb(58, 116, 224);
+    color: white;
+    height: 100px;
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0;
+
+    }
+
+    .row>div>a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    }
+
+    .button-head {
+    text-align: end;
+    }
+
+    thead {
+    background-color: rgb(10, 141, 21);
+    text-align: center;
+    color: white;
+    }
+    .foot-border {
+    border-top: 2px solid black;
+    }
+    table{
+    text-align: center;
+    }
+    </style>
+
+    <title>Transfer history</title>
+
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Transfer history</h1>
+            </div>
+            <div class="col-sm-7" style="text-align: end">
+                <a href="/customers" class="btn btn-outline-light">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span>List of customers</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Sender ID</th>
+                <th>Sender Name</th>
+                <th>Recipient ID</th>
+                <th>Recipient Name</th>
+                <th>Transfer Amount ($)</th>
+                <th>Fees (%)</th>
+                <th>Fees Amount ($)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="item : ${transfers}">
+                <tr>
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.sender.id}"></td>
+                    <td th:text="${item.sender.fullName}"></td>
+                    <td th:text="${item.recipient.id}"></td>
+                    <td th:text="${item.recipient.fullName}"></td>
+                    <td th:text="${item.transferAmount}"></td>
+                    <td th:text="${item.fees}"></td>
+                    <td th:text="${item.feesAmount}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">Total Fees Amount:</td>
+                <td colspan="2" th:text="${allFeesAmount}"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="/assets/bootstrap-5.2.0-dist/sweetalert2/src/sweetalert2.js"></script>
+<script type="text/javascript" src="/assets/bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
